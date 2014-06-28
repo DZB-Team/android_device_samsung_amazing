@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Init files
+PRODUCT_COPY_FILES += \
+    device/samsung/amazing/ramdisk/fstab.gt-s6802board:root/fstab.gt-s6802board
+
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml
