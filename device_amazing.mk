@@ -15,6 +15,7 @@
 # Init files
 PRODUCT_COPY_FILES += \
     device/samsung/amazing/ramdisk/fstab.gt-s6802board:root/fstab.gt-s6802board \
+    device/samsung/amazing/ramdisk/ueventd.gt-s6802board.rc:root/ueventd.gt-s6802board.rc \
 
 
 # These are the hardware-specific features
