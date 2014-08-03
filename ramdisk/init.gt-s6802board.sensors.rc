@@ -1,0 +1,19 @@
+on post-fs-data
+
+# sensors folder
+    mkdir /data/misc/sensors 0777 system misc
+    chmod 0660 /data/misc/sensors/ecs_nvm
+    chmod 0660 /data/misc/sensors/accel_offset
+
+# backlight
+    chown system system /sys/class/backlight/sec-backlight/brightness
+    chown system system /sys/class/backlight/pwm-keypad-backlight.0/brightness
+
+
+    chown system system /sys/class/input/input0/enable
+    chown system system /sys/class/input/input0/poll_delay
+    chmod 0660 /sys/class/input/input0/enable
+    chmod 0660 /sys/class/input/input0/poll_delay
+
+    chown system system /sys/class/input/input1/enable
+    chmod 0660 /sys/class/input/input1/enable
