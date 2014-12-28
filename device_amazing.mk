@@ -26,10 +26,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.enable_key_repeat=true \
     ro.cwm.repeatable_keys=114,115
 
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
-
 # MDPI assets
 PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
