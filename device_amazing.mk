@@ -14,12 +14,8 @@
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/amazing/ramdisk/fstab.gt-s6802board:root/fstab.gt-s6802board \
-	device/samsung/amazing/ramdisk/ueventd.gt-s6802board.rc:root/ueventd.gt-s6802board.rc \
    	device/samsung/amazing/ramdisk/init.gt-s6802board.sensors.rc:root/init.gt-s6802board.sensors.rc \
-   	device/samsung/amazing/ramdisk/init.gt-s6802board.gps.rc:root/init.gt-s6802board.gps.rc \
-   	device/samsung/amazing/ramdisk/init.gt-s6802board.fs.rc:root/init.gt-s6802board.fs.rc \
-        device/samsung/amazing/ramdisk/init.bcm21553.rc:root/init.bcm21553.rc
+   	device/samsung/amazing/ramdisk/init.gt-s6802board.gps.rc:root/init.gt-s6802board.gps.rc 
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -42,11 +38,3 @@ $(call inherit-product, vendor/samsung/amazing/vendor.mk)
 
 # Add device package overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/amazing/overlay
-
-# Touchscreen
-PRODUCT_COPY_FILES += \
-    device/samsung/bcm21553-common/prebuilt/usr/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/Zinitix_tsp.idc
-
-## Graphics density
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=160
