@@ -1,12 +1,13 @@
-import init.bcm21553.bt.rc
-import init.bcm21553.fs.rc
-import init.bcm21553.gps.rc
-import init.bcm21553.sensors.rc
-import init.bcm21553.swapart.rc
-import init.bcm21553.usb.rc
-import init.bcm21553.wifi.rc
+import init.gt-s6802board.bt.rc
+import init.gt-s6802board.fs.rc
+import init.gt-s6802board.gps.rc
+import init.gt-s6802board.sensors.rc
+import init.gt-s6802board.swapart.rc
+import init.gt-s6802board.usb.rc
+import init.gt-s6802board.wifi.rc
 
 on early-init
+
     # remove /etc/recovery.fstab to fix /system/etc compatibility symlink
     rm /etc/recovery.fstab
     rmdir /etc
@@ -33,26 +34,26 @@ on init
 
 on fs
 
-# mount device partitions
-    mount_all /fstab.bcm21553
-    swapon_all /fstab.bcm21553
+   # mount device partitions
+    mount_all /fstab.gt-s6802board
+    swapon_all /fstab.gt-s6802board
 
 on post-fs-data
 
     chown system system /sys/module/bcm215xx_pm/parameters/debug
 
-# Force Power Down
+    # Force Power Down
     chmod 0660 /sys/class/sec/pm/power_down
     chown root system /sys/class/sec/pm/power_down
 
-# CPU Governor
+    # CPU Governor
     chmod 0660 /sys/class/sec/cpu/cpu_gov
     chown root system /sys/class/sec/cpu/cpu_gov
     
-# waketime CSP461560
+    # waketime CSP461560
     chown radio system /sys/module/bcm_fuse_net/parameters/pdp_waketime
 
-# audio debug (needed for ALSA driver routing)
+    # audio debug (needed for ALSA driver routing)
     chown system audio /sys/devices/platform/brcm_alsa_device/sound/card0/controlC0/BrcmAud_DrvTest
 
 service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
@@ -67,11 +68,3 @@ on property:sys.boot_completed=1
     write /sys/kernel/mm/ksm/sleep_millisecs 4000
     write /sys/kernel/mm/ksm/pages_to_scan 256
 
-on post-fs
-service ril-daemon /system/bin/rild
-    class main
-    socket rild stream 660 root radio
-    socket rild1 stream 660 root radio
-    socket rild-debug stream 660 radio system
-    user root
-    group radio cache inet misc audio sdcard_rw qcom_oncrpc qcom_diag log
