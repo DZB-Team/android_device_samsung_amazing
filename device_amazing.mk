@@ -15,8 +15,12 @@
 # Init files
 PRODUCT_COPY_FILES += \
    	device/samsung/amazing/ramdisk/init.gt-s6802board.sensors.rc:root/init.gt-s6802board.sensors.rc \
-   	device/samsung/amazing/ramdisk/init.gt-s6802board.gps.rc:root/init.gt-s6802board.gps.rc 
-
+   	device/samsung/amazing/ramdisk/init.gt-s6802board.gps.rc:root/init.gt-s6802board.gps.rc \
+   	device/samsung/amazing/ramdisk/init.gt-s6802board.fs.rc:root/init.gt-s6802board.fs.rc \
+   	device/samsung/amazing/ramdisk/fstab.gt-s6802board:root/fstab.gt-s6802board \
+   	device/samsung/amazing/ramdisk/ueventd.gt-s6802board.rc:root/ueventd.gt-s6802board.rc \
+   	device/samsung/amazing/ramdisk/init.gt-s6802board.rc:root/init.gt-s6802board.rc
+   	
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml
