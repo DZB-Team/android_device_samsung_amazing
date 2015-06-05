@@ -17,18 +17,16 @@ on early-init
 
 on init
 
-    # sdcard
-    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    # SD slot support
     mkdir /storage/sdcard0 0700 root root
     mkdir /storage/sdcard1 0700 root root
 
-    symlink /storage/sdcard1 /mnt/sdcard
-    symlink /storage/sdcard1 /sdcard
-    symlink /storage/sdcard0 /mnt/sdcard/external_sd
-    symlink /storage/sdcard0 /external_sd
-    export EXTERNAL_STORAGE /storage/sdcard1
-    export SECONDARY_STORAGE /storage/sdcard0
+    symlink /storage/sdcard0 /mnt/sdcard0
+    symlink /storage/sdcard0 /sdcard0
+    symlink /storage/sdcard0 /mnt/sdcard1
+    symlink /storage/sdcard0 /sdcard1
+    export EXTERNAL_STORAGE /storage/sdcard0
+    export SECONDARY_STORAGE /storage/sdcard1
 
     # sd-ext
     mkdir /sd-ext 0771 system system
@@ -61,37 +59,8 @@ on post-fs-data
     # audio debug (needed for ALSA driver routing)
     chown system audio /sys/devices/platform/brcm_alsa_device/sound/card0/controlC0/BrcmAud_DrvTest
 
-service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
-    class late_start
-    disabled
-
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-    disabled 
-
-service charger /charger
-    class charger
-
 on property:sys.boot_completed=1
     # Override Kernel Samepage Merging (KSM) values
     write /sys/kernel/mm/ksm/sleep_millisecs 4000
     write /sys/kernel/mm/ksm/pages_to_scan 256
-
-on post-fs 
-
-service ril-daemon1 /system/bin/rild -c 1
-    class main
-    socket rild1 stream 660 root radio
-    socket rild-debug1 stream 660 radio system
-    user root
-    disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
-
-service ril-daemon2 /system/bin/rild -c 2
-    class main
-    socket rild2 stream 660 root radio
-    socket rild-debug2 stream 660 radio system
-    user root
-    disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
 
