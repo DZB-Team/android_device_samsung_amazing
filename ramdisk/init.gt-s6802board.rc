@@ -23,8 +23,8 @@ on init
 
     symlink /storage/sdcard0 /mnt/sdcard0
     symlink /storage/sdcard0 /sdcard0
-    symlink /storage/sdcard0 /mnt/sdcard1
-    symlink /storage/sdcard0 /sdcard1
+    symlink /storage/sdcard1 /mnt/sdcard1
+    symlink /storage/sdcard1 /sdcard1
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
 
