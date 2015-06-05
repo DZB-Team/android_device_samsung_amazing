@@ -12,3 +12,4 @@
 /dev/block/mmcblk1p2      			/sd-ext       		ext4    defaults      		recoveryonly
 boot						/boot			emmc	defaults		recoveryonly
 /dev/block/zram0				none			swap	defaults		zramsize=50331648,swapprio=1
+
