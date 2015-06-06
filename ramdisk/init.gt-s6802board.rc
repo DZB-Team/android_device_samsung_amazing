@@ -59,6 +59,18 @@ on post-fs-data
     # audio debug (needed for ALSA driver routing)
     chown system audio /sys/devices/platform/brcm_alsa_device/sound/card0/controlC0/BrcmAud_DrvTest
 
+
+service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
+    class late_start
+    disabled
+
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled 
+
+service charger /charger
+    class charger
+ 
 on property:sys.boot_completed=1
     # Override Kernel Samepage Merging (KSM) values
     write /sys/kernel/mm/ksm/sleep_millisecs 4000
