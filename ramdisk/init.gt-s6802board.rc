@@ -21,10 +21,11 @@ on init
     mkdir /storage/sdcard0 0700 root root
     mkdir /storage/sdcard1 0700 root root
 
-    symlink /storage/sdcard0 /mnt/sdcard0
-    symlink /storage/sdcard0 /sdcard0
-    symlink /storage/sdcard1 /mnt/sdcard1
-    symlink /storage/sdcard1 /sdcard1
+    symlink /storage/sdcard0 /mnt/sdcard
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard1 /storage/sdcard0/external_sd
+    symlink /storage/sdcard1 /mnt/sdcard/external_sd
+    symlink /storage/sdcard1 /external_sd
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
 
